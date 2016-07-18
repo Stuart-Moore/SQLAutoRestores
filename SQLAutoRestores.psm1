@@ -17,3 +17,21 @@ Pop-Location
 . $PSScriptRoot\function-New-BackupObject.ps1   
 . $PSScriptRoot\function-Get-PointInTime.ps1
 . $PSScriptRoot\function-New-SQLConnection.ps1
+
+Export-ModuleMember 
+
+Export-ModuleMember Get-BottomFolders    
+Export-ModuleMember Get-DBBackupObject    
+Export-ModuleMember Get-FileRestoreMove   
+Export-ModuleMember Get-RandomElement   
+Export-ModuleMember Get-RestoreSet        
+Export-ModuleMember Remove-Database     
+Export-ModuleMember Restore-Database    
+Export-ModuleMember Test-Database     
+Export-ModuleMember Test-DatabaseVersion
+Export-ModuleMember Test-RestoreSpace
+Export-ModuleMember Restore-SQLBackupHeader
+Export-ModuleMember Test-BackupObject
+Export-ModuleMember New-BackupObject
+Export-ModuleMember Get-PointInTime
+Export-ModuleMember New-SQLConnection

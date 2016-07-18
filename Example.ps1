@@ -4,7 +4,7 @@ This is the rough plan for how this will work.
 Subject to change as I split apart the script this started off as, and as I try to build in testing
 
 #>
-Import-Module SQLAutoRestores
+Import-Module .\SQLAutoRestores.psm1
 Import-Module SQLPS -DisableNameChecking
 
 $SQLconnection = New-SQLConnection 'server1\instance2'
@@ -16,7 +16,7 @@ $RestoreFolder = Get-RandomElement $folders
 
 $BackupObjects = Get-DBBackupObject -InputPath $RestoreFolder -ServerInstance $SQLconnection
 
-$TimeToRestore = Get-PointInTime -BackupObjects $BackupObjects
+$TimeToRestore = Get-PointInTime -BackupsObject $BackupObjects
 
 $Objective = Get-RestoreSet -BackupsObject $BackupObjects -Latest
 or
