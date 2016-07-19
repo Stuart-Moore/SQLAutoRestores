@@ -22,10 +22,7 @@
    [Parameter(Mandatory)]
    [System.object]$BackupsObject,
     [Parameter(ParameterSetName="TargetTime")]
-    [DateTime]$TargetTime = (Get-date),
-    [Parameter(ParameterSetName="Latest")]
-    [switch]$Latest =$null
-    
+    [DateTime]$TargetTime = (Get-Date "11/12/1975 8:15 pm")    
   )
     Write-Verbose "Get-RestoreSet - Entering"
     
@@ -37,15 +34,11 @@
             exit
         }
     } 
-     
- <#   $StartDate = $BackupsObject | ?{$_.BackupType -eq 'Database'} | Measure-Object -Min -Property startdate    $EndDate = $BackupsObject.FinishDate | Measure-Object -Max        if ($RandomPointInTime -eq $True){        $seconds = Get-Random ($EndDate.Maximum -$StartDate.Minimum).TotalSeconds        $TargetTime = $startdate.Minimum.AddSeconds($seconds)
-    }else{
-        if ($TargetTime -lt $StartDate -or $TargetTime -gt $EndDate){
-            write-error "Point in Time target is not in the range covered by the available backups"
-            return
-        }
+
+    if ($TargetTime -eq (Get-Date "11/12/1975 8:15 pm")){
+        $TargetTime = Get-Date
     }
-    #>
+     
     Write-Verbose "Get-RestoreSet - targettime is ($TargetTime)" 
     $btmp = @()    $btmp += $BackupsObject | ?{$_.backuptype -eq 'Database' -and (get-date $_.startdate) -lt $TargetTime} | sort-object -Descending startdate | Select-Object -first 1    $btmp += $BackupsObject | ?{(get-date $_.startdate) -gt (get-date $btmp.finishdate) -and (get-date $_.FinishDate) -lt $TargetTime}    $btmp += $BackupsObject | ?{(get-date $_.startdate) -gt (get-date $TargetTime)} | Sort-Object -Property StartDate | Select-Object -First 1
     Write-Verbose "Get-RestoreSet - Leaving" 
