@@ -19,8 +19,9 @@
     [object]$backupsObject
   )
   Write-Verbose "Get-PointInTime - Entering"
-
-    $StartDate = $BackupsObject | Where-Object {$_.BackupType -eq 'Database'} | Measure-Object -Min -Property startdate    $EndDate = $BackupsObject.FinishDate | Measure-Object -Max            $seconds = Get-Random ($EndDate.Maximum -$StartDate.Minimum).TotalSeconds        $TargetTime = $startdate.Minimum.AddSeconds($seconds)
+  Write-Verbose "Get-PointInTime - Checking Dates"
+    $StartDate = $BackupsObject | Where-Object {$_.BackupType -eq 'Database'} | Measure-Object -Min -Property startdate    $EndDate = $BackupsObject.FinishDate | Measure-Object -Maxif ($StartDate -eq $EndDate){    Write-Verbose "Get-PointInTime - DateTimes are the same, random call will fail, so return Endate"}else{    $seconds = Get-Random ($EndDate.Maximum -$StartDate.Minimum).TotalSeconds    $TargetTime = $startdate.Minimum.AddSeconds($seconds)
     return $TargetTime
     Write-Verbose "Get-PointInTime - Leaving"
+    }
  }
