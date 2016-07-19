@@ -22,6 +22,6 @@
     [Microsoft.SQLServer.Management.Smo.Server]$RestoreSQLServer
   )
   Write-Verbose "Remove-Database - Entering " 
-  $sqlsvr.Databases[$DatabaseName].Drop()
+  $RestoreSQLServer.Databases[$DatabaseName].Drop()
   Write-Verbose "Remove-Database - Leaving " 
 }

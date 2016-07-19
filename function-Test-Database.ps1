@@ -30,7 +30,7 @@
   $err = 0
   try
   {
-    $results = Invoke-SQLCmd -ServerInstance $sqlsvr.Name -Query "DBCC CHECKDB ($DatabaseName) with TABLERESULTS" -ErrorAction Stop -QueryTimeout 0
+    $results = Invoke-SQLCmd -ServerInstance $RestoreSQLServer.Name -Query "DBCC CHECKDB ($DatabaseName) with TABLERESULTS" -ErrorAction Stop -QueryTimeout 0
   }
   catch  
     {

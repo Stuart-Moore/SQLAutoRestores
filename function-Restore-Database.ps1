@@ -15,6 +15,8 @@
     A switch to indicate if T-SQL restore Scripts should be generated
   .PARAMETER ScriptOnly
     A switch to indicate if only T-SQL restore scripts should be generated (no restore is performed)
+  .PARAMETER TargetTime
+    Point in time to recover to.
   #>
   [CmdletBinding()]
   param
@@ -25,7 +27,9 @@
     [Parameter(Mandatory=$True)]
     [Microsoft.SqlServer.Management.Smo.SqlSmoObject]$RestoreSQLServer,
     [Switch]$Script,
-    [Switch]$ScriptOnly
+    [Switch]$ScriptOnly,
+    $TargetTime
+
   )
   Write-Verbose "Restore-Database - Entering " 
   $devicetype = [Microsoft.SqlServer.Management.Smo.DeviceType]::File
@@ -35,6 +39,7 @@
     $restoredevice = New-Object -TypeName Microsoft.SQLServer.Management.Smo.BackupDeviceItem($backup.filename,$devicetype)
     $null =  $restore.devices.add($restoredevice)
     $restore.Database = $backup.DatabaseName
+    $restore.ToPointInTime = $TargetTime
     foreach ($f in $backup.RelocateFile){
         $null =  $restore.RelocateFiles.add($f)
     }
@@ -46,11 +51,11 @@
         Write-Verbose "Restore-Database - Not at endpoint" 
     }
     if ($script -or $scriptOnly){
-        $restore.sqlrestore($RestoreSQLServer)
+        $restore.script($RestoreSQLServer)
     }
     
     if ($ScriptOnly -ne $TRUE){
-        $restore.script($RestoreSQLServer)
+        $restore.sqlrestore($RestoreSQLServer)
     }
     $null =  $restore.Devices.Remove($restoredevice)    
   }

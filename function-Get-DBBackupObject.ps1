@@ -28,6 +28,6 @@
   )
     Write-Verbose "Get-DBBackupObjects - Entering"
     $objbackups = @()    Write-Verbose "Get-DBBackupObjects - Getting files"    foreach ($file in (Get-ChildItem $InputPath\* -include *.bak, *.trn)) {        Write-Verbose "Get-DBBackupObjects - Checking file $file"        $objbackups += Restore-SQLBackupHeader -BackupFile $file -ServerInstance $ServerInstance    }
-    Write-Verbose "Get-DBBackupObjects - Leaving function ($objbackups).count found"
+    Write-Verbose "Get-DBBackupObjects - Leaving function $(objbackups.count) found"
     return $objbackups
 }
