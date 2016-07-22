@@ -7,9 +7,9 @@
    A wrapper function around RESTORE FILELISTONLY and RESTORE HEADERONLY to pull back information contained with SQL Server backup files.
 
   .EXAMPLE
-    Get-RandomElement -InputArray $Arraylist
-  .PARAMETER InputArray
-    ArrayList to work with
+    Get-DBBackupObject -InputPath '\\SomeServer\SomeFolder\AnotherFolder'
+  .PARAMETER InputPasth
+    Path to backup files
 
   #>
   [CmdletBinding()]
@@ -27,7 +27,7 @@
     [Microsoft.SqlServer.Management.Smo.SqlSmoObject]$ServerInstance
   )
     Write-Verbose "Get-DBBackupObjects - Entering"
-    $objbackups = @()    Write-Verbose "Get-DBBackupObjects - Getting files"    foreach ($file in (Get-ChildItem $InputPath\* -include *.bak, *.trn)) {        Write-Verbose "Get-DBBackupObjects - Checking file $file"        $objbackups += Restore-SQLBackupHeader -BackupFile $file -ServerInstance $ServerInstance    }
-    Write-Verbose "Get-DBBackupObjects - Leaving function $(objbackups.count) found"
+    $objbackups = @()    Write-Verbose "Get-DBBackupObjects - Getting files"    foreach ($file in (Get-ChildItem $InputPath\* -include *.bak, *.trn)) {        Write-Verbose "Get-DBBackupObjects - Checking file $file"            $objbackups += Restore-SQLBackupHeader -BackupFile $file -ServerInstance $ServerInstance    }
+    Write-Verbose "Get-DBBackupObjects - Leaving function"
     return $objbackups
 }

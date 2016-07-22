@@ -44,7 +44,8 @@ Describe -Tags ('Unit', 'Acceptance') "$module Module Tests"  {
                 'Test-BackupObject',
                 'Restore-SQLBackupHeader',
                 'New-SQLConnection',
-                'Get-PointInTime' 
+                'Get-PointInTime',
+                'Test-DBBackupsExist' 
                 )
   
   foreach ($function in $functions)

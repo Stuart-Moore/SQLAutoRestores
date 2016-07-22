@@ -11,12 +11,15 @@
   #>
   [CmdletBinding()]
   param
-  ()
+  (
+        $filename = '',        $LastLSN = '',        $BackupType = '',        $StartDate = '',        $FinishDate = '',        $DatabaseName = '',        $SQLVersion = '',        $TotalSize = '',        $Files = '',        $RelocateFile = '',
+        $Position = ''
+  )
   Write-Verbose "New-BackupObject - starting"
 
     $backuptmp = new-object psobject -Property @{
-        filename = ''        LastLSN = ''        BackupType = ''        StartDate = ''        FinishDate = ''        DatabaseName = ''        SQLVersion = ''        TotalSize = ''        Files = ''        RelocateFile = ''
-        Position = ''
+        filename = $filename        LastLSN = $LastLSN        BackupType = $BackupType        StartDate = $StartDate        FinishDate = $FinishDate        DatabaseName = $DatabaseName        SQLVersion = $SQLVersion        TotalSize = $TotalSize        Files = $Files        RelocateFile = $RelocateFile
+        Position = $Position
     }
     return $backuptmp
   Write-Verbose "New-BackupObject - Leaving"

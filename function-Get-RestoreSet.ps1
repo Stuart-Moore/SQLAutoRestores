@@ -40,7 +40,7 @@
     }
      
     Write-Verbose "Get-RestoreSet - targettime is ($TargetTime)" 
-    $btmp = @()    $btmp += $BackupsObject | ?{$_.backuptype -eq 'Database' -and (get-date $_.startdate) -lt $TargetTime} | sort-object -Descending startdate | Select-Object -first 1    $btmp += $BackupsObject | ?{(get-date $_.startdate) -gt (get-date $btmp.finishdate) -and (get-date $_.FinishDate) -lt $TargetTime}    $btmp += $BackupsObject | ?{(get-date $_.startdate) -gt (get-date $TargetTime)} | Sort-Object -Property StartDate | Select-Object -First 1
+    $btmp = @()    $btmp += $BackupsObject | ?{$_.backuptype -eq 'Database' -and (get-date $_.startdate) -lt $TargetTime} | sort-object -Descending startdate | Select-Object -first 1    $fullstop = $btmp[0].finishdate    $btmp += $BackupsObject | ?{(get-date $_.startdate) -ge (get-date $fullstop) -and (get-date $_.FinishDate) -lt $TargetTime}    $btmp += $BackupsObject | ?{(get-date $_.startdate) -ge (get-date $TargetTime)} | Sort-Object -Property StartDate | Select-Object -First 1
     Write-Verbose "Get-RestoreSet - Leaving" 
-    $btmp
+    return $btmp
 }

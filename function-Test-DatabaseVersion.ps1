@@ -22,11 +22,23 @@
     [Microsoft.SqlServer.Management.Smo.SqlSmoObject]$RestoreSQLServer
   )
    Write-Verbose "Test-DatabaseVersion - Entering " 
-  if($RestoreSQLServer.VersionMajor -gt ($BackupObject[0].SQLVersion+2)){
+   $version = Get-SQLServerMajorVersion -RestoreSQLServer $RestoreSQLServer
+  if(($version -gt ($BackupObject[0].SQLVersion+2)) -or ($version -lt ($BackupObject[0].SQLVersion)) ){
         Write-debug "Cannot restore a backup due to SQL Server Version incompatabilities. Backup is version $($BackupObject[1].SQLVersion) and SQL Server is $($RestoreSQLServer.versionMajor)"
         $false 
   }else{
         $true
     }
   Write-Verbose "Test-DatabaseVersion - Leaving" 
+}
+
+function Get-SQLServerMajorVersion
+{
+  [CmdletBinding()]
+  param
+  (
+    [Parameter(Mandatory=$True)]
+    [Microsoft.SqlServer.Management.Smo.SqlSmoObject]$RestoreSQLServer
+  )
+  return $RestoreSQLServer.VersionMajor
 }
