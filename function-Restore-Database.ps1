@@ -11,6 +11,8 @@
     A list of SQL backups, as provided by Get-RestoreSet
   .PARAMETER RestoreSQLServer
     A SQL server SMO connection object
+  .PARAMETER RestoreAs
+    Restore the database under this name
   .PARAMETER Script
     A switch to indicate if T-SQL restore Scripts should be generated
   .PARAMETER ScriptOnly
@@ -26,19 +28,25 @@
     [object]$BackupsObject,
     [Parameter(Mandatory=$True)]
     [Microsoft.SqlServer.Management.Smo.SqlSmoObject]$RestoreSQLServer,
+    [String]$RestoreAs='',
     [Switch]$Script,
     [Switch]$ScriptOnly,
     $TargetTime
 
   )
   Write-Verbose "Restore-Database - Entering " 
+  If ($RestoreAs -eq ''){
+    $DatabaseName = $BackupsObject[0].DatabaseName
+  } else {
+    $DatabaseName = $RestoreAs
+  }
   $devicetype = [Microsoft.SqlServer.Management.Smo.DeviceType]::File
   foreach ($backup in ($BackupsObject | sort-object LastLSN, startdate)){
     Write-Verbose "Remove-Database - Restoring file " 
     $restore = New-Object -TypeName Microsoft.SqlServer.Management.Smo.Restore
     $restoredevice = New-Object -TypeName Microsoft.SQLServer.Management.Smo.BackupDeviceItem($backup.filename,$devicetype)
     $null =  $restore.devices.add($restoredevice)
-    $restore.Database = $backup.DatabaseName
+    $restore.Database = $DatabaseName
     $restore.ToPointInTime = $TargetTime
     foreach ($f in $backup.RelocateFile){
         $null =  $restore.RelocateFiles.add($f)

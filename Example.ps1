@@ -31,18 +31,21 @@ $BackupObjects = Get-DBBackupObject -InputPath $RestoreFolder -ServerInstance $S
 $TimeToRestore = Get-PointInTime -BackupsObject $BackupObjects
 
 
-#Check
+
 
 #Or just restore to the latest point held in the files
 $Objective = Get-RestoreSet -BackupsObject $BackupObjects -Latest
 #or
-$Objective = Get-RestoreSet -BackupsObject $BackupObjects -RestoreTime $TimeToRestore
+$Objective = Get-RestoreSet -BackupsObject $BackupObjects -TargetTime $TimeToRestore
 
 #Redirect the files to the required location on restore server
 $Objective = Get-FileRestoreMove -BackupsObject $Objective -DestinationPath e:\some\path
 
+#Check if DB name exists
+Test-DatabaseExists -RestoreSQLServer $SQLconnection -DatabaseName $Objective[0].DatabaseName
+
 #check for space
-Test-RestoreSpace -BackupsObject $Objective -RestoreSQLServer $SQLconnection -RestorePath e:\some\path
+Test-RestoreSpace -BackupsObject $Objective -RestoreSQLServer $SQLconnection -RestorePath e:\some\Path
 
 #Check we can restore the db on the specified server version
 Test-DBRestoreVersion -BackupsOject $Objective -RestoreSQLServer $SQLconnection

@@ -19,6 +19,7 @@ Pop-Location
 . $PSScriptRoot\function-Test-DatabaseVersion.ps1
 . $PSScriptRoot\function-Test-RestoreSpace.ps1
 . $PSScriptRoot\function-Test-DBBackupsExist.ps1
+. $PSScriptRoot\function-Test-DatabaseExists.ps1
 
 Export-ModuleMember 
 
