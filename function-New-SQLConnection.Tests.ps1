@@ -13,3 +13,21 @@ Describe 'Get-BottomFolders Unit Tests' -tags 'Unit' {
         }
     }
 }
+
+Describe 'Get-BottomFolders UAT' -tags 'UAT'{
+    InModuleScope SQLAutoRestores {
+        Context "Make a SQL Connection" {
+            $SQL2012conn = New-SQLConnection -ServerInstance localhost\SQLExpress2012
+            It "should return a useable SQL connection" {
+                $SQL2012conn | Should BeOfType Microsoft.SQLServer.Management.Smo.Server
+            }
+            It "Should be a 2016 connection" {
+                $SQL2012conn.Processors | Should BeGreaterThan 0
+            }
+            It "Should throw on a bad connection" {
+                $sqlBADconn = New-SQLConnection -ServerInstance localhost\badinstance
+                $SQLBADconn.Processors | Should Throw
+            }
+        }
+    }
+}

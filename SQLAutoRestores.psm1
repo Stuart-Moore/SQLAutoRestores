@@ -13,7 +13,6 @@ Pop-Location
 . $PSScriptRoot\function-Remove-Database.ps1
 . $PSScriptRoot\function-Restore-Database.ps1
 . $PSScriptRoot\function-Restore-SQLBackupHeader.ps1
-. $PSScriptRoot\function-Restore-SQLBackupHeaders.ps1
 . $PSScriptRoot\function-Test-BackupObject.ps1
 . $PSScriptRoot\function-Test-Database.ps1
 . $PSScriptRoot\function-Test-DatabaseVersion.ps1
