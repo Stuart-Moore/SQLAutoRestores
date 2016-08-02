@@ -2,23 +2,23 @@
 Import-Module SqlPS -DisableNameChecking
 Pop-Location
 
-. $PSScriptRoot\function-Get-BottomFolders.ps1
-. $PSScriptRoot\function-Get-DBBackupObject.ps1
-. $PSScriptRoot\function-Get-FileRestoreMove.ps1
-. $PSScriptRoot\function-Get-PointInTime.ps1
-. $PSScriptRoot\function-Get-RandomElement.ps1
-. $PSScriptRoot\function-Get-RestoreSet.ps1
-. $PSScriptRoot\function-New-BackupObject.ps1
-. $PSScriptRoot\function-New-SQLConnection.ps1
-. $PSScriptRoot\function-Remove-Database.ps1
-. $PSScriptRoot\function-Restore-Database.ps1
-. $PSScriptRoot\function-Restore-SQLBackupHeader.ps1
-. $PSScriptRoot\function-Test-BackupObject.ps1
-. $PSScriptRoot\function-Test-Database.ps1
-. $PSScriptRoot\function-Test-DatabaseVersion.ps1
-. $PSScriptRoot\function-Test-RestoreSpace.ps1
-. $PSScriptRoot\function-Test-DBBackupsExist.ps1
-. $PSScriptRoot\function-Test-DatabaseExists.ps1
+. $PSScriptRoot\Functions\function-Get-BottomFolders.ps1
+. $PSScriptRoot\Functions\function-Get-DBBackupObject.ps1
+. $PSScriptRoot\Functions\function-Get-FileRestoreMove.ps1
+. $PSScriptRoot\Functions\function-Get-PointInTime.ps1
+. $PSScriptRoot\Functions\function-Get-RandomElement.ps1
+. $PSScriptRoot\Functions\function-Get-RestoreSet.ps1
+. $PSScriptRoot\Functions\function-New-BackupObject.ps1
+. $PSScriptRoot\Functions\function-New-SQLConnection.ps1
+. $PSScriptRoot\Functions\function-Remove-Database.ps1
+. $PSScriptRoot\Functions\function-Restore-Database.ps1
+. $PSScriptRoot\Functions\function-Restore-SQLBackupHeader.ps1
+. $PSScriptRoot\Functions\function-Test-BackupObject.ps1
+. $PSScriptRoot\Functions\function-Test-Database.ps1
+. $PSScriptRoot\Functions\function-Test-DatabaseVersion.ps1
+. $PSScriptRoot\Functions\function-Test-RestoreSpace.ps1
+. $PSScriptRoot\Functions\function-Test-DBBackupsExist.ps1
+. $PSScriptRoot\Functions\function-Test-DatabaseExists.ps1
 
 Export-ModuleMember 
 
