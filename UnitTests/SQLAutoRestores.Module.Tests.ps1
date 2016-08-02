@@ -1,6 +1,6 @@
 ﻿
 $here = Split-Path -Parent $MyInvocation.MyCommand.Path
-
+$here = Split-Path -Parent (Split-Path -Parent $MyInvocation.MyCommand.Path)
 $module = 'SQLAutoRestores'
 
 Describe -Tags ('Unit', 'Acceptance') "$module Module Tests"  {
@@ -97,7 +97,7 @@ Describe -Tags ('Unit', 'Acceptance') "$module Module Tests"  {
 
     Context "$function has tests" {
       It "function-$($function).Tests.ps1 should exist" {
-        "function-$($function).Tests.ps1" | Should Exist
+        "$here\UnitTests\function-$($function).Tests.ps1" | Should Exist
       }
     }
   
