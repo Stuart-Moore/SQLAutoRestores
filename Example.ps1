@@ -5,8 +5,6 @@ Subject to change as I split apart the script this started off as, and as I try 
 
 #>
 Import-Module .\SQLAutoRestores.psm1
-Import-Module SQLPS -DisableNameChecking
-
 
 #GEt connection to SQL Server we're going to restore onto
 $SQLconnection = New-SQLConnection 'server1\instance2'
