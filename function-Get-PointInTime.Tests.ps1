@@ -25,12 +25,12 @@ Describe 'Get-PointInTime Unit Tests' -tags 'Unit' {
             It "Should Barf if enddate not dates" {
                 $tmp.FinishDate='hello'
                 $tmp.StartDate = $t
-                { Get-PointInTime $tmp } | Should Throw "not a datetime"
+                { Get-PointInTime $tmp } | Should Throw "Enddate is not a datetime"
             }
             It "Should Barf if startdate not dates" {
                 $tmp.StartDate='hello'
                 $tmp.FinishDate = $t.AddMilliseconds(2)
-                { Get-PointInTime $tmp } | Should Throw "not a datetime"
+                { Get-PointInTime $tmp } | Should Throw "Startdate is not a datetime"
             }
 
         }
