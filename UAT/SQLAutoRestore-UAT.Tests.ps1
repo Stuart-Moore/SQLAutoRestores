@@ -59,3 +59,19 @@ Describe 'New UAT Test Harness' -tags 'Build-UAT' {
         }
     }
 }
+
+
+Describe 'New UAT Test Harness' -tags 'Run-UAT' {
+    InModuleScope SQLAutoRestores {
+        Context "Checking Harness" {
+            It "Harness Config should exist" {
+            '.\UAT-Harness-Config.ps1' | Should exist
+            }
+            . .\UAT-Harness-Config.ps1
+        
+            It "Should contain at least 2 servers in servers" {
+                $servers.count | Should BeGreaterThan 1
+            }
+        }
+    }
+}
