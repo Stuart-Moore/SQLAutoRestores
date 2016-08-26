@@ -35,7 +35,7 @@ declare @i integer
 set @i=0
 
 
-backup database [restoretime] to disk='##replace##restoretime.bak'
+backup database [restoretime] to disk='##replace##\restoretime.bak'
 
 while (@i<10)
 begin
@@ -43,7 +43,7 @@ insert into steps values (@i, getdate())
 select @i=@i+1
 waitfor delay '00:00:30'
 end
-backup log [restoretime] to disk='##replace##restoretime_1.trn'
+backup log [restoretime] to disk='##replace##\restoretime_1.trn'
 
 while (@i<20)
 begin
@@ -53,7 +53,7 @@ waitfor delay '00:00:30'
 end
 
 
-backup log [restoretime] to disk='##replace##restoretime_2.trn'
+backup log [restoretime] to disk='##replace##\restoretime_2.trn'
 
 while (@i<30)
 begin
@@ -63,7 +63,7 @@ waitfor delay '00:00:30'
 end
 
 
-backup log [restoretime] to disk='##replace##restoretime_3.trn'
+backup log [restoretime] to disk='##replace##\restoretime_3.trn'
 
 
 
