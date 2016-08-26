@@ -52,7 +52,7 @@
         $null =  $restore.RelocateFiles.add($f)
     }
     if ($backup.LastLSN -eq $BackupsObject[-1].LastLSN){
-        Write-Verbose "Remove-Database - At endpoint, start recovery " 
+        Write-Verbose "Restore-Database - At endpoint, start recovery " 
         $restore.NoRecovery = $False
     }else{
         $restore.NoRecovery = $True

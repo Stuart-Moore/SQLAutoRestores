@@ -21,7 +21,7 @@
     [Parameter(Mandatory=$True)]
     [Microsoft.SqlServer.Management.Smo.SqlSmoObject]$RestoreSQLServer
   )
-  if ($sqlconn.Databases.Contains($DatabaseName)){
+  if ($RestoreSQLServer.Databases.Contains($DatabaseName)){
     return $true
   } else {
     return $false

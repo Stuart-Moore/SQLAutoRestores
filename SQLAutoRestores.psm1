@@ -29,7 +29,8 @@ Export-ModuleMember Get-RandomElement
 Export-ModuleMember Get-RestoreSet        
 Export-ModuleMember Remove-Database     
 Export-ModuleMember Restore-Database    
-Export-ModuleMember Test-Database     
+Export-ModuleMember Test-Database
+Export-ModuleMember Test-DatabaseExists     
 Export-ModuleMember Test-DatabaseVersion
 Export-ModuleMember Test-RestoreSpace
 Export-ModuleMember Restore-SQLBackupHeader
