@@ -1,5 +1,10 @@
 # SQLAutoRestores
 
+## Update 20/07/2017
+This module is now historical. All of the functionality is now avaialble in the [dbatools](https://dbatools.io) module. The repo for that project is here [dbatools on GtiHub](github.com/sqlcollaborative/dbatools)
+
+## Back to the ReadMe
+
 PowerShell module to allow easy automated restoration of SQL Server backups to promote testing them.
 
 Aim is to be able to be given a set of folders containing SQL Server backups (Full, Differential or Transaction), pick one of the folders at random, scan the backup files to ensure we have a good set. Then restore them on a server of the users choosing, redirecting them to a folder of choice, after checking that there is enough space on the target server and that the SQL Server versions are compatible.
