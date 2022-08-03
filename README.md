@@ -1,7 +1,7 @@
 # SQLAutoRestores
 
 ## Update 20/07/2017
-This module is now historical. All of the functionality is now avaialble in the [dbatools](https://dbatools.io) module. The repo for that project is here [dbatools on GtiHub](github.com/sqlcollaborative/dbatools)
+This module is now historical. All of the functionality is now avaialble in the [dbatools](https://dbatools.io) module. The repo for that project is here [dbatools on GtiHub](https://github.com/dataplat/dbatools)
 
 ## Back to the ReadMe
 
